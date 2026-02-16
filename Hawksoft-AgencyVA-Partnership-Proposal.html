@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AgencyVA x Hawksoft Partnership Proposal</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --navy: #0b2e3f;
+    --teal: #0e6e7e;
+    --teal-light: #11899c;
+    --white: #ffffff;
+    --off-white: #f4f8f9;
+    --gray-text: #4a5568;
+    --light-border: #d0dfe4;
+  }
+
+  body {
+    font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+    color: #2d3748;
+    line-height: 1.5;
+    max-width: 1000px;
+    margin: 0 auto;
+    background: var(--white);
+  }
+
+  /* ── Header ── */
+  .header {
+    background: linear-gradient(135deg, var(--navy) 0%, #0f4a5e 100%);
+    color: var(--white);
+    padding: 36px 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .header h1 {
+    font-size: 26px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+  }
+  .header h1 span { color: var(--teal-light); }
+  .header-meta {
+    font-size: 13px;
+    opacity: 0.85;
+    margin-top: 6px;
+  }
+  .logo-text {
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-align: right;
+  }
+  .logo-text span { color: var(--teal-light); }
+
+  /* ── Sections ── */
+  .section { padding: 28px 48px; }
+  .section-alt { background: var(--off-white); }
+
+  .section-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--teal);
+    border-bottom: 3px solid var(--teal);
+    display: inline-block;
+    padding-bottom: 4px;
+    margin-bottom: 14px;
+  }
+
+  .lead {
+    font-size: 15px;
+    color: var(--gray-text);
+    margin-bottom: 10px;
+  }
+  .lead strong { color: var(--navy); }
+
+  /* ── Value Table ── */
+  .value-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    font-size: 14px;
+  }
+  .value-table th {
+    background: var(--navy);
+    color: var(--white);
+    padding: 10px 16px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 14px;
+  }
+  .value-table td {
+    padding: 9px 16px;
+    border-bottom: 1px solid var(--light-border);
+    vertical-align: top;
+  }
+  .value-table tr:nth-child(even) td { background: var(--off-white); }
+
+  /* ── Option Cards ── */
+  .options-grid {
+    display: flex;
+    gap: 24px;
+    margin-top: 12px;
+  }
+  .option-card {
+    flex: 1;
+    border: 2px solid var(--light-border);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  .option-card.recommended { border-color: var(--teal); }
+  .option-header {
+    background: var(--off-white);
+    padding: 12px 18px;
+    font-weight: 700;
+    font-size: 14px;
+    color: var(--navy);
+    border-bottom: 1px solid var(--light-border);
+  }
+  .option-card.recommended .option-header {
+    background: var(--teal);
+    color: var(--white);
+    border-bottom: none;
+  }
+  .option-badge {
+    display: inline-block;
+    background: var(--white);
+    color: var(--teal);
+    font-size: 10px;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 10px;
+    margin-left: 8px;
+    vertical-align: middle;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .option-body {
+    padding: 14px 18px;
+    font-size: 13px;
+    color: var(--gray-text);
+  }
+  .option-body h4 {
+    color: var(--navy);
+    font-size: 13px;
+    font-weight: 600;
+    margin: 10px 0 4px 0;
+  }
+  .option-body h4:first-child { margin-top: 0; }
+  .option-body ul {
+    margin: 0 0 0 18px;
+    padding: 0;
+  }
+  .option-body li { margin-bottom: 3px; }
+  .option-why {
+    margin-top: 12px;
+    padding: 10px 14px;
+    background: var(--off-white);
+    border-radius: 6px;
+    font-size: 12.5px;
+    color: var(--navy);
+  }
+  .option-why strong { color: var(--teal); }
+
+  /* ── Impact List ── */
+  .impact-list {
+    list-style: none;
+    padding: 0;
+    margin-top: 8px;
+  }
+  .impact-list li {
+    padding: 8px 0 8px 28px;
+    position: relative;
+    font-size: 14px;
+    border-bottom: 1px solid var(--light-border);
+  }
+  .impact-list li:last-child { border-bottom: none; }
+  .impact-list li::before {
+    content: "\2713";
+    position: absolute;
+    left: 0;
+    color: var(--teal);
+    font-weight: 700;
+    font-size: 16px;
+  }
+  .impact-list li strong { color: var(--navy); }
+
+  /* ── Trust Box ── */
+  .trust-box {
+    background: var(--navy);
+    color: var(--white);
+    padding: 20px 28px;
+    border-radius: 8px;
+    font-size: 14px;
+    line-height: 1.6;
+    margin-top: 8px;
+  }
+  .trust-box strong { color: var(--teal-light); }
+
+  /* ── Steps Table ── */
+  .steps-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    font-size: 13.5px;
+  }
+  .steps-table th {
+    background: var(--teal);
+    color: var(--white);
+    padding: 9px 14px;
+    text-align: left;
+    font-weight: 600;
+  }
+  .steps-table td {
+    padding: 9px 14px;
+    border-bottom: 1px solid var(--light-border);
+  }
+  .steps-table tr:nth-child(even) td { background: var(--off-white); }
+  .timeline-badge {
+    display: inline-block;
+    background: var(--navy);
+    color: var(--white);
+    font-size: 11px;
+    font-weight: 600;
+    padding: 2px 10px;
+    border-radius: 10px;
+  }
+
+  /* ── Footer ── */
+  .footer {
+    background: var(--navy);
+    color: var(--white);
+    padding: 18px 48px;
+    font-size: 13px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .footer a {
+    color: var(--teal-light);
+    text-decoration: none;
+  }
+
+  @media print {
+    body { max-width: 100%; }
+    .section { padding: 20px 36px; }
+    .header, .footer { padding: 24px 36px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ════ HEADER ════ -->
+<div class="header">
+  <div>
+    <h1><span>AgencyVA</span> x Hawksoft</h1>
+    <div class="header-meta">Partnership Proposal &nbsp;|&nbsp; February 16, 2026 &nbsp;|&nbsp; Prepared for Hawksoft Leadership</div>
+  </div>
+  <div class="logo-text">AGENCY <span>VA</span></div>
+</div>
+
+<!-- ════ THE OPPORTUNITY ════ -->
+<div class="section">
+  <div class="section-title">The Opportunity</div>
+  <p class="lead">
+    Hawksoft agencies hire talented professionals &mdash; many without an insurance background &mdash; and face
+    extended ramp-up periods, knowledge inconsistencies, and reduced confidence in client interactions.
+    There is no standardized, Hawksoft-specific training solution in the market today.
+  </p>
+  <p class="lead">
+    <strong>AgencyVA has already built one.</strong> Our Agency V University LMS delivers structured, role-ready
+    training across all major lines of insurance &mdash; built entirely around the Hawksoft platform.
+    Together, we can put this solution in the hands of every Hawksoft agency.
+  </p>
+</div>
+
+<!-- ════ WHAT WE BRING ════ -->
+<div class="section section-alt">
+  <div class="section-title">What We Bring to the Table</div>
+  <table class="value-table">
+    <thead>
+      <tr><th>AgencyVA</th><th>Hawksoft</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>3 years of LMS development (launching v3 with enhanced interface)</td>
+        <td>Trusted AMS platform used by hundreds of agencies</td>
+      </tr>
+      <tr>
+        <td>100+ insurance-licensed VAs trained on Hawksoft</td>
+        <td>Direct distribution channel to agency partners</td>
+      </tr>
+      <tr>
+        <td>BYU-accredited degree pathway for workforce credentialing</td>
+        <td>Sandbox environment access enabling hands-on training</td>
+      </tr>
+      <tr>
+        <td>AI-backed simulators for risk-free, repetitive practice</td>
+        <td>Brand credibility and industry trust</td>
+      </tr>
+      <tr>
+        <td>Curriculum built on front-line agency experience, not theory</td>
+        <td>Commitment to partnership over competition</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ════ TWO PARTNERSHIP PATHS ════ -->
+<div class="section">
+  <div class="section-title">Two Partnership Paths</div>
+  <div class="options-grid">
+
+    <!-- Option A -->
+    <div class="option-card recommended">
+      <div class="option-header">
+        Option A: Subscription-Based LMS Access <span class="option-badge">Recommended</span>
+      </div>
+      <div class="option-body">
+        <p>AgencyVA provides Hawksoft and its agency partners with turnkey access to Agency V University.</p>
+
+        <h4>One-Time Onboarding</h4>
+        <ul>
+          <li>Enterprise setup &amp; admin configuration</li>
+          <li>User provisioning &amp; leadership orientation</li>
+          <li>Success planning &amp; rollout support</li>
+        </ul>
+
+        <h4>Monthly Subscription (Per User)</h4>
+        <ul>
+          <li>Full LMS access &mdash; all Hawksoft-specific modules</li>
+          <li>Personal Lines, Commercial Lines, coverage, terminology, workflows</li>
+          <li>Guided learning paths with testing at every step</li>
+          <li>Live instructor-led workshop sessions</li>
+          <li>Platform updates aligned with Hawksoft releases</li>
+          <li>Admin visibility into employee progress</li>
+        </ul>
+
+        <div class="option-why">
+          <strong>Why this works for Hawksoft:</strong> Zero development burden. Offer a proven training
+          solution to agency partners, strengthening retention and platform stickiness &mdash; without
+          building or maintaining anything.
+        </div>
+      </div>
+    </div>
+
+    <!-- Option B -->
+    <div class="option-card">
+      <div class="option-header">Option B: Collaborative Curriculum Build</div>
+      <div class="option-body">
+        <p>AgencyVA provides expertise and guidance to help Hawksoft develop internal training capabilities.</p>
+
+        <h4>What's Included</h4>
+        <ul>
+          <li>Shared curriculum frameworks &amp; content strategy</li>
+          <li>AgencyVA consulting on module design &amp; best practices</li>
+          <li>Hawksoft owns and maintains the resulting materials</li>
+        </ul>
+
+        <div class="option-why">
+          <strong>Why this works for Hawksoft:</strong> Full ownership and control of training content,
+          with AgencyVA's expertise accelerating development.
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ════ BUSINESS IMPACT ════ -->
+<div class="section section-alt">
+  <div class="section-title">Business Impact for Hawksoft Agencies</div>
+  <ul class="impact-list">
+    <li><strong>Faster employee readiness</strong> &mdash; structured 4-week onboarding replaces months of trial-and-error</li>
+    <li><strong>Reduced replacement costs</strong> &mdash; trained staff stay longer and perform better</li>
+    <li><strong>Improved service confidence</strong> &mdash; VAs and staff interact with clients accurately from day one</li>
+    <li><strong>Stronger agency conversations</strong> &mdash; Hawksoft can point to a credentialed training ecosystem</li>
+    <li><strong>Enhanced brand credibility</strong> &mdash; BYU-accredited pathways and industry-specific education differentiate the Hawksoft partner experience</li>
+  </ul>
+</div>
+
+<!-- ════ TRUST FOUNDATION ════ -->
+<div class="section">
+  <div class="section-title">Trust Foundation</div>
+  <div class="trust-box">
+    Hawksoft leadership has affirmed a clear commitment: <strong>Hawksoft has no plans to enter the VA space
+    and values this partnership too highly to jeopardize it.</strong> AgencyVA's training program already
+    operates 100% within Hawksoft, with unprecedented sandbox access granted for development.
+    This proposal builds on a relationship that is already working.
+  </div>
+</div>
+
+<!-- ════ NEXT STEPS ════ -->
+<div class="section section-alt">
+  <div class="section-title">Proposed Next Steps</div>
+  <table class="steps-table">
+    <thead>
+      <tr><th>Step</th><th>Owner</th><th>Timeline</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Align on preferred partnership path (Option A or B)</td>
+        <td>Joint</td>
+        <td><span class="timeline-badge">Today</span></td>
+      </tr>
+      <tr>
+        <td>Define pricing structure and terms</td>
+        <td>AgencyVA</td>
+        <td><span class="timeline-badge">Within 1 week</span></td>
+      </tr>
+      <tr>
+        <td>Identify Hawksoft relationship point of contact</td>
+        <td>Hawksoft</td>
+        <td><span class="timeline-badge">Within 1 week</span></td>
+      </tr>
+      <tr>
+        <td>Schedule VA placement webinar for Hawksoft agencies</td>
+        <td>Joint</td>
+        <td><span class="timeline-badge">Within 30 days</span></td>
+      </tr>
+      <tr>
+        <td>Begin onboarding / rollout to first agency cohort</td>
+        <td>Joint</td>
+        <td><span class="timeline-badge">Within 60 days</span></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ════ FOOTER ════ -->
+<div class="footer">
+  <div><strong>AgencyVA</strong> &nbsp;|&nbsp; 1-801-590-7477 &nbsp;|&nbsp; <a href="mailto:sales@agencyva.com">sales@agencyva.com</a> &nbsp;|&nbsp; <a href="https://www.agencyva.com">www.agencyva.com</a></div>
+</div>
+
+</body>
+</html>
