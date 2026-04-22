@@ -1,0 +1,124 @@
+{
+  "name": "Lead Reply & Booking Notifications",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "webhooks/calendly",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "calendly-webhook",
+      "name": "Calendly Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1.1,
+      "position": [240, 200],
+      "webhookId": "calendly-lead-booking",
+      "notes": "Set this URL as your Calendly webhook endpoint in Settings > Integrations"
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "webhooks/email-reply",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "instantly-webhook",
+      "name": "Instantly Reply Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1.1,
+      "position": [240, 420],
+      "webhookId": "instantly-reply",
+      "notes": "Set this URL in Instantly.ai Settings > Webhooks > Reply Received"
+    },
+    {
+      "parameters": {
+        "url": "http://localhost:8000/webhooks/calendly",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Calendly-Webhook-Signature",
+              "value": "={{ $json.headers['calendly-webhook-signature'] }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyContentType": "json",
+        "body": "={{ JSON.stringify($json.body) }}",
+        "options": { "timeout": 10000 }
+      },
+      "id": "forward-calendly",
+      "name": "Forward to Python Server",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [460, 200],
+      "notes": "Forwards payload to the Python FastAPI webhook server which handles Slack + HubSpot"
+    },
+    {
+      "parameters": {
+        "url": "http://localhost:8000/webhooks/email-reply",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "X-Webhook-Signature",
+              "value": "={{ $json.headers['x-webhook-signature'] }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyContentType": "json",
+        "body": "={{ JSON.stringify($json.body) }}",
+        "options": { "timeout": 10000 }
+      },
+      "id": "forward-instantly",
+      "name": "Forward to Python Server",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [460, 420]
+    },
+    {
+      "parameters": {
+        "respondWith": "text",
+        "responseBody": "{\"received\": true}",
+        "options": { "responseCode": 200 }
+      },
+      "id": "respond-ok-1",
+      "name": "Respond 200",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [680, 200]
+    },
+    {
+      "parameters": {
+        "respondWith": "text",
+        "responseBody": "{\"received\": true}",
+        "options": { "responseCode": 200 }
+      },
+      "id": "respond-ok-2",
+      "name": "Respond 200",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [680, 420]
+    }
+  ],
+  "connections": {
+    "Calendly Webhook": {
+      "main": [[{ "node": "Forward to Python Server", "type": "main", "index": 0 }]]
+    },
+    "Instantly Reply Webhook": {
+      "main": [[{ "node": "Forward to Python Server", "type": "main", "index": 0 }]]
+    },
+    "Forward to Python Server": {
+      "main": [[{ "node": "Respond 200", "type": "main", "index": 0 }]]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "saveManualExecutions": true
+  },
+  "_meta": {
+    "instanceId": "lead-pipeline-n8n"
+  }
+}
